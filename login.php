@@ -2,18 +2,18 @@
 include'conn.php';
 if(isset($_POST['submit'])
 {
- $uname=$_POST['username'];
- $psswrd=$_POST['password'];
- $sql="select * from kavya where username='$uname' and password='$psswrd'";
- $result=mysqli_query($conn,$sql);
- if(mysqli_num_rows($result)>0)
- {
-  header("location:welcome.php")
+  $uname=$_POST['username'];
+  $psswrd=$_POST['password'];
+  $sql="select * from user_registration where username='$uname' and password='$psswrd'";
+  $result=mysqli_query($conn,$sql);
+  if(mysqli_num_rows($result)>0)
+  {
+   header("location:welcome.php");
+  }
+  mysqli_close($conn);
  }
- mysqli_close($conn);
-}
-else
-{
+ else
+ {
 ?>
 <html>
  <body>
@@ -27,7 +27,7 @@ else
  <input type="password" name="password">
  <a href="registration.php">new user?sign up</a><br><br>
  <input type="submit" name="submit value="submit"><br><br>
-</from>
+</form>
 </center>
 </html>
 <?php

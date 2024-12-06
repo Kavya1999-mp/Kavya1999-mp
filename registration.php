@@ -1,22 +1,23 @@
 <?php
 include'conn.php';
-if(isset($_POST['submit'])
+if(isset($_POST['submit']))
 {
- $fname=$_POST['firstname'];
- $lname=$_POST['lastname'];
- $ph=$_POST['phonenumber'];
- $eid=$_POST['email'];
- $uname=$_POST['username'];
- $psswrd=$_POST['password'];
- $sql="insert into kavya(firstname,lastname,phonenumber,username,password)values('$fname','$lname','$eid','$uname','$psswrd')";
- if(mysqli_query($conn,$sql))
- {
-  echo"NEW RECORD CREATED SUCCESSFULLY";
- }
- else
- {
-  echo"Error:".$sql."<br>".mysqli_error($conn);
- }
+  $fname=$_POST['firstname'];
+  $lname=$_POST['lastname'];
+  $ph=$_POST['phonenumber'];
+  $eid=$_POST['email'];
+  $uname=$_POST['username'];
+  $psswrd=$_POST['password'];
+  $sql="INSERT INTO 
+  user_registration(firstname,lastname,phonenumber,email,username,password)VALUES('$fname','$lname','$ph','$eid','$uname','$psswrd')";
+  if(mysqli_query($conn,$sql))
+   {
+     echo"NEW RECORD CREATED SUCCESSFULLY";
+   }
+  else
+   {
+    echo"Error:".$sql."<br>".mysqli_error($conn);
+   }
  mysqli_close($conn);
 }
 else
@@ -39,9 +40,11 @@ else
  Password:
   <input type="textbox" name="password"><br>
  <input type="submit" name="submit">
-</center>
-</body>
+ </form>
+ </center>
+ </body>
 </html>
+<?php
 }
 ?>
  
