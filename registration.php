@@ -9,7 +9,7 @@ if(isset($_POST['submit']))
   $uname=$_POST['username'];
   $psswrd=$_POST['password'];
   $sql="INSERT INTO 
-  user_registration(firstname,lastname,phonenumber,email,username,password)VALUES('$fname','$lname','$ph','$eid','$uname','$psswrd')";
+  user_registration(first_name,last_name,phone_number,email,user_name,password)VALUES('$fname','$lname','$ph','$eid','$uname','$psswrd')";
   if(mysqli_query($conn,$sql))
    {
      echo"NEW RECORD CREATED SUCCESSFULLY";
@@ -28,17 +28,17 @@ else
 <center> 
  <form action="" method="post">
  first name:
- <input type="textbox" name="firstname"><br>
+ <input type="textbox" name="firstname"><br><br>
  Last name:
- <input type="textbox" name="lastname"><br>
+ <input type="textbox" name="lastname"><br><br>
  Phone number:
- <input type="textbox" name="phonenumber"><br>
+ <input type="textbox" name="phonenumber"><br><br>
  Email:
- <input type="textbox" name="email"><br>
+ <input type="textbox" name="email"><br><br>
  Username:
- <input type="textbox" name="username"><br>
+ <input type="textbox" name="username"><br><br>
  Password:
-  <input type="textbox" name="password"><br>
+  <input type="textbox" name="password"><br><br>
  <input type="submit" name="submit">
  </form>
  </center>
