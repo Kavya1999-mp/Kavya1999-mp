@@ -3,7 +3,7 @@ include'conn.php';
 if(isset($_POST['submit']))
 {
   $id1=$_POST['id'];
-  $sql="DELETE FROM student WHERE student='$id1'";
+  $sql="DELETE FROM student WHERE student_id='$id1'";
  if(mysqli_query($conn,$sql))
   {
     header('Location:homepage.php');
@@ -14,16 +14,20 @@ if(isset($_POST['submit']))
   }
  mysqli_close($conn);
 }
+else
+{
 ?>
 <html>
  <body>
  <center>
   <form action="" method="post">
  Student id:
- <input type="submit" name="submit" value="Submit"><br><br>
+ <input type="textbox" name="id"><br><br>
+ <input type="submit" name="submit" value="submit"><br><br>
  </form>
  </cente>
  </body>
 </html>
+<?php
 }
 ?>

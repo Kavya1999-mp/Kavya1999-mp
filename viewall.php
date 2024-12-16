@@ -1,14 +1,13 @@
 <?php
-include'con.php';
+include'conn.php';
 $sql="SELECT *FROM student";
-$reult=mysqli_query($conn,$sql);
-if(mysqli_num_rows($reslt)>0)
+$result=mysqli_query($conn,$sql);
+if(mysqli_num_rows($result)>0)
  {
    while($row=mysqli_fetch_assoc($result))
     {
-      echo"<br>id:"$row['studentid']."<br>Name:".$row["Name"]."<br>Course:".$row["Course"]
-      $row["Semester"]."<br>Gender:".$row["Gender"]."<br>Hobbies:".$row["Hobbies"].
-      "<br>";
+      echo"<br>id: " .$row['student_id']."<br>name:".$row["student_name"]."<br>course:".$row["course_name"].
+      "<br>semester:" .$row["semester"]."<br>gender:".$row["Gender"]."<br>hobbies:".$row["Hobbies"]."<br>";
     }
  }
 else
@@ -18,6 +17,7 @@ else
 mysqli_close($conn);
 ?>
 <html>
+ <body>
  <center>
   <a href="homepage.php">Back</a>
 </center>
