@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
  $sql="INSERT INTO student(student_name,course_name,semester,Gender,Hobbies)VALUES('$fname','$crse','$sem',' $gnder','$hobbies1')";
  if(mysqli_query($conn,$sql))
  {
-  header("location:homepage.php");
+  header("Location:homepage.php");
  }
  else
  {
