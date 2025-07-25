@@ -1,0 +1,179 @@
+// activity main.java
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_centerVertical="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="arithmetic calculator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-60dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="enter the number1"
+        android:inputType="number"
+
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="143dp" />
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-205dp"
+        android:layout_marginTop="180dp"
+        android:ems="10"
+        android:hint="enter 2nd number"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="216dp" />
+
+
+    <EditText
+        android:id="@+id/editTextText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-205dp"
+        android:layout_marginTop="280dp"
+        android:ems="10"
+        android:hint="result"
+        android:inputType="number"
+
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="437dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-205dp"
+        android:layout_marginTop="360dp"
+        android:text="substration" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-109dp"
+        android:layout_marginTop="410dp"
+        android:text="multiplication" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-135dp"
+        android:layout_marginTop="470dp"
+        android:text="Division" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-90dp"
+        android:layout_marginTop="525dp"
+        android:text="addition"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="296dp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+// main.java
+
+package com.example.calculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+
+public class MainActivity extends AppCompatActivity {
+    EditText t1,t2,t3;
+    Button b1,b2,b3,b4;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        t1=findViewById(R.id.editTextText);
+        t2=findViewById(R.id.editTextText2);
+        t3=findViewById(R.id.editTextText3);
+        b1=findViewById(R.id.button);
+        b2=findViewById(R.id.button2);
+        b3=findViewById(R.id.button3);
+        b4=findViewById(R.id.button4);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int n1=Integer.parseInt(t1.getText().toString());
+                int n2=Integer.parseInt(t2.getText().toString());
+                int n3=n1+n2;
+                String n4=String.valueOf(n3);
+                t3.setText(n4);
+            }
+
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int n1=Integer.parseInt(t1.getText().toString());
+                int n2=Integer.parseInt(t2.getText().toString());
+                int n3=n1-n2;
+                String n4=String.valueOf(n3);
+                t3.setText(n4);
+
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int n1=Integer.parseInt(t1.getText().toString());
+                int n2=Integer.parseInt(t2.getText().toString());
+                int n3=n1*n2;
+                String n4=String.valueOf(n3);
+                t3.setText(n4);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int n1=Integer.parseInt(t1.getText().toString());
+                int n2=Integer.parseInt(t2.getText().toString());
+                if (n2==0)
+                {
+                    Toast.makeText(MainActivity.this, "division not possible", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    int n3 = n1 / n2;
+                    String n4 = String.valueOf(n3);
+                    t3.setText(n4);
+                }
+
+
+            }
+        });
+
+
+    }
+}
+output
+
