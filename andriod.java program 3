@@ -1,0 +1,295 @@
+// activity.main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BIODATA FORM"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:paddingBottom="16dp" />
+
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter name"
+            android:inputType="textPersonName"
+            android:padding="8dp" />
+
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter email"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:layout_marginTop="8dp" />
+
+
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter age"
+            android:inputType="number"
+            android:padding="8dp"
+            android:layout_marginTop="8dp" />
+
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter phone number"
+            android:inputType="phone"
+            android:padding="8dp"
+            android:layout_marginTop="8dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select your qualification"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <CheckBox
+                android:id="@+id/checkBoxPlusTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plus Two" />
+
+            <CheckBox
+                android:id="@+id/checkBoxDegree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Degree"
+                android:layout_marginStart="16dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxPostGraduate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Post Graduate"
+                android:layout_marginStart="16dp" />
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:layout_marginTop="16dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:layout_marginStart="16dp" />
+
+            <RadioButton
+                android:id="@+id/radioOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                android:layout_marginStart="16dp" />
+        </RadioGroup>
+
+       
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</ScrollView>
+
+// main.java
+
+package com.example.program3;
+
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText editTextName, editTextEmail, editTextAge, editTextPhone, editTextPassword;
+    CheckBox checkBoxPlusTwo, checkBoxDegree, checkBoxPostGraduate;
+    RadioGroup radioGroupGender;
+    Button buttonSubmit;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main); // Ensure your XML file is named activity_main.xml
+
+        // Initialize views
+        editTextName = findViewById(R.id.editTextName);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextAge = findViewById(R.id.editTextAge);
+        editTextPhone = findViewById(R.id.editTextPhone);
+        editTextPassword = findViewById(R.id.editTextPassword);
+
+        checkBoxPlusTwo = findViewById(R.id.checkBoxPlusTwo);
+        checkBoxDegree = findViewById(R.id.checkBoxDegree);
+        checkBoxPostGraduate = findViewById(R.id.checkBoxPostGraduate);
+
+        radioGroupGender = findViewById(R.id.radioGroupGender);
+        buttonSubmit = findViewById(R.id.buttonSubmit);
+
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateForm();
+            }
+        });
+    }
+
+    private void validateForm() {
+        String name = editTextName.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String ageStr = editTextAge.getText().toString().trim();
+        String phone = editTextPhone.getText().toString().trim();
+        String password = editTextPassword.getText().toString();
+
+        // Name validation
+        if (TextUtils.isEmpty(name)) {
+            editTextName.setError("Name is required");
+            return;
+        }
+
+        // Email validation
+        if (TextUtils.isEmpty(email)) {
+            editTextEmail.setError("Email is required");
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Enter a valid email address");
+            return;
+        }
+
+        // Age validation
+        int age;
+        try {
+            age = Integer.parseInt(ageStr);
+            if (age < 0 || age > 120) {
+                editTextAge.setError("Enter a valid age");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            editTextAge.setError("Age must be a number");
+            return;
+        }
+
+        // Phone number validation
+        if (TextUtils.isEmpty(phone)) {
+            editTextPhone.setError("Phone number is required");
+            return;
+        }
+        String phonePattern = "^[6-9]\\d{9}$";
+        if (!phone.matches(phonePattern)) {
+            editTextPhone.setError("Enter a valid 10-digit Indian phone number");
+            return;
+        }
+
+        // Password validation
+        if (TextUtils.isEmpty(password)) {
+            editTextPassword.setError("Password is required");
+            return;
+        }
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{6,}$";
+        if (!password.matches(passwordPattern)) {
+            editTextPassword.setError("Password must contain uppercase, lowercase, digit, and special character");
+            return;
+        }
+
+        // Qualification check
+        if (!checkBoxPlusTwo.isChecked() && !checkBoxDegree.isChecked() && !checkBoxPostGraduate.isChecked()) {
+            Toast.makeText(this, "Select at least one qualification", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Gender check
+        int selectedGenderId = radioGroupGender.getCheckedRadioButtonId();
+        if (selectedGenderId == -1) {
+            Toast.makeText(this, "Select your gender", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        RadioButton selectedGender = findViewById(selectedGenderId);
+        String gender = selectedGender.getText().toString();
+
+        // Build result string
+        StringBuilder result = new StringBuilder();
+        result.append(" BIODATA SUBMITTED\n\n");
+        result.append("Name: ").append(name).append("\n");
+        result.append("Email: ").append(email).append("\n");
+        result.append("Age: ").append(age).append("\n");
+        result.append("Phone: ").append(phone).append("\n");
+        result.append("Password: ").append(password).append("\n");
+        result.append("Gender: ").append(gender).append("\n");
+        result.append("Qualifications: ");
+
+        if (checkBoxPlusTwo.isChecked()) result.append("Plus Two ");
+        if (checkBoxDegree.isChecked()) result.append("Degree ");
+        if (checkBoxPostGraduate.isChecked()) result.append("Post Graduate");
+
+        // Show result
+        Toast.makeText(this, result.toString(), Toast.LENGTH_LONG).show();
+    }
+}
+
